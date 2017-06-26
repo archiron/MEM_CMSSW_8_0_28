@@ -1,0 +1,22 @@
+Vegas point :  cosTheta_missing_jet = 0.772857  phi_missing_jet = 0.0979099  P_TauLep = 19.4412  cosThetaTLepTHad = -0.839358  EQuark1 = 58.2211  cosThetaNu = -0.106833  phiNu = 2.00241 
+Building Hadronic Tau :
+ .... alpha, beta, gamma  0.00413241 1.00347 0.00188759
+Build Leptonic/Hadronic Tau :
+ .... leptonic Tau -12.3406, 14.8756, -2.09432, 19.5222
+ .... hadronic Tau plus86.0715, -149.081, 134.086, 218.21
+ .... hadronic Tau minus85.4712, -149.608, 133.883, 218.21
+Build leptonic top :
+ .... b from lep top -29.6969, 27.1652, 100.634, 108.485
+ .... lep top-59.362, 154.974, 106.53, 262.471
+Build hadronic top :
+ .... b from had top 83.0263, -86.1275, -0.960451, 119.726
+ .... q1 from had top -52.761, -24.5979, -0.953664, 58.2211
+ .... q2 from had top 21.7519, 2.13656, 26.6192, 34.4425
+ .... had top 52.0171, -108.589, 24.705, 212.39
+Boosting :
+  initial total momentum tot4P 66.3859, -87.8205, 263.227, 712.593
+  initial total momentum tot4Pt 110.089
+  Boosted total momentum tot4P 0, 0, 263.227, 704.038
+  Boost magnitude 110.089
+  initial total momentum tot4Pt 110.089
+Integrand value : T_Jet1 = 0.0278432 T_Jet2 = 0.719312 T_BJet_hadtop = 9.02633e-05 T_BJet_leptop = 3.95117e-06 T_MET = 1.93194e-11 T_lepTau = 0.026489 T_hadTau = 0.00568195 T_lepTop = 5.03498e+07 T_hadTop = 8.46535e+07 Jac = 1.29133e+09 wME = 5.13883e-05 Eval = 5.87455e-06 Error= 

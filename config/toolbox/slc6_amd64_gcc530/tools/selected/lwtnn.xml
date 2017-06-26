@@ -1,0 +1,11 @@
+<tool name="lwtnn" version="1.0-ikhhed">
+  <info url="https://github.com/lwtnn/lwtnn"/>
+  <lib name="lwtnn"/>
+  <client>
+    <environment name="LWTNN_BASE" default="/cvmfs/cms.cern.ch/slc6_amd64_gcc530/external/lwtnn/1.0-ikhhed"/>
+    <environment name="LIBDIR" default="$LWTNN_BASE/lib"/>
+    <environment name="INCLUDE" default="$LWTNN_BASE/include"/>
+  </client>
+  <runtime name="PATH" value="$LWTNN_BASE/bin" type="path"/>
+  <use name="eigen"/>
+</tool>
