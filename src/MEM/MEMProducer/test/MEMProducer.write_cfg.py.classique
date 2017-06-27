@@ -89,8 +89,17 @@ skipEvents = cms.untracked.uint32(max_skipped),
 process.load("MEM.MEMProducer.MEMParams_cfi")
 process.load("MEM.MEMProducer.METCorr_cfi")
 
-from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_mc', '')
+#from Configuration.AlCa.GlobalTag import GlobalTag
+#process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_mc', '')
+from Configuration.AlCa.autoCond import autoCond 
+#process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff") 
+if IsMC: 
+    process.GlobalTag.globaltag = '80X_mcRun2_asymptotic_2016_TrancheIV_v6' 
+else : 
+    # process.GlobalTag.globaltag = '80X_dataRun2_Prompt_ICHEP16JEC_v0' # ICHEP 
+    process.GlobalTag.globaltag = '80X_dataRun2_2016SeptRepro_v7' # Run B-G 
+    # process.GlobalTag.globaltag = '80X_dataRun2_Prompt_v16' # Run H   
+print process.GlobalTag.globaltag 
 
 # MET TESTS TOOLS
 process.METSequence = cms.Sequence()
