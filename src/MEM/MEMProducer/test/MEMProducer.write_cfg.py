@@ -13,8 +13,8 @@ print "max number of evts to treat : ", max_number
 
 process = cms.Process("OWNPARTICLES")
 process.options   = cms.untracked.PSet( 
-#    wantSummary = cms.untracked.bool(True) ,
-#    allowUnscheduled = cms.untracked.bool(True) 
+#    wantSummary = cms.untracked.bool(True) , 
+#    allowUnscheduled = cms.untracked.bool(True) # no effect
 )
 
 from FWCore.Modules.printContent_cfi import * 

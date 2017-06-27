@@ -281,7 +281,7 @@ MEMProducer::MEMProducer(const edm::ParameterSet& iConfig)
     produces<reco::MEMResultCollection>();
     produces<double>("METSignificance");
     produces<math::Error<2>::type>("METCovariance");
-   
+
     std::cout << "debut appel RunConfig" << std::endl;                               
     std::string str;
     

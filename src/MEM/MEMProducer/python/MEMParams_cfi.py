@@ -201,7 +201,8 @@ cosTheta_missing_jet = [-1.,1.]
 # MadGraph 5
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #MGParamCardFile = MEM_BASE + "/MGProcesses/param_card.dat"
-MGParamCardFile = "/home/llr/info/chiron_u/CMSSW_8_0_12/src/MEM/MEMProducer/test/param_card.dat"
+#MGParamCardFile = "/home/llr/info/chiron_u/CMSSW_8_0_12/src/MEM/MEMProducer/test/param_card.dat"
+MGParamCardFile = "/home/llr/info/chiron_u/CMSSW_8_0_28/src/MEM/MEMProducer/test/param_card.dat"
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # LHAPDF

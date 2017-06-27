@@ -13,8 +13,8 @@ MEMProducer = cms.EDProducer('MEMProducer',
     
     mets2 = cms.InputTag('slimmedMETs'),
 
-    srcSig = cms.InputTag("METSignificance", "METSignificance"),
-    srcCov = cms.InputTag("METSignificance", "METCovariance"),
+    srcSig = cms.InputTag("METSignificance", "METSignificance"), # srcSig = cms.InputTag("corrMETSignificance", "METSignificance"),
+    srcCov = cms.InputTag("METSignificance", "METCovariance"),   # srcCov = cms.InputTag("corrMETSignificance", "METCovariance"),
     
     configName = cms.string('MEMProducer.py'),
 

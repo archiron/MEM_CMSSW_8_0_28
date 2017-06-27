@@ -20,7 +20,7 @@ process.options   = cms.untracked.PSet(
 from FWCore.Modules.printContent_cfi import * 
 process.printContent = printContent
 
-process.load("MEM.MEMProducer.METCorr_cfi") # load METSignificance2
+process.load("MEM.MEMProducer.METCorr_cfi") # load corrMETSignificance
 
 # MET TESTS TOOLS
 try: IsMC
@@ -86,7 +86,6 @@ skipEvents = cms.untracked.uint32(max_skipped),
     ])
 )
 
-
 from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_mc', '')
 
@@ -100,12 +99,12 @@ runMetCorAndUncFromMiniAOD(
 )
 
 process.METSequence += process.fullPatMetSequence
-#process.METSequence += process.METSignificance2 
+process.METSequence += process.corrMETSignificance 
 
 # END MET TESTS TOOLS
 
-#process.load("MEM.MEMProducer.MEMParams_cfi")
-#process.load("MEM.MEMProducer.MEMProducer_cfi")
+process.load("MEM.MEMProducer.MEMParams_cfi")
+process.load("MEM.MEMProducer.MEMProducer_cfi")
 
 process.out = cms.OutputModule("PoolOutputModule",
     fileName = cms.untracked.string('myOutputFile.ID_0.root'),
@@ -127,8 +126,8 @@ process.out = cms.OutputModule("PoolOutputModule",
   
 process.p = cms.Path(
     #process.printContent +
-    process.METSequence #+ 
-#    process.MEMProducer
+    process.METSequence + 
+    process.MEMProducer
     ) 
 
 process.e = cms.EndPath(process.out)
