@@ -507,45 +507,6 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             std::cout << "tau decayMode    : " << nplet.decayMode << std::endl;
                         
                             /* Mets */
-                            /*if ( mets->size() > 1 ) {
-                                std::cout << "!!!!! WARNING Met size : " << mets->size() << std::endl;
-                            }
-                            else {
-                                std::cout << "Met size : " << mets->size() << std::endl ;
-                            }
-                    
-                            std::cout << "nouveau" << std::endl;
-                            const pat::MET& srcMET = (*mets)[0];
-                            const reco::METCovMatrix cov = srcMET.getSignificanceMatrix(); // TEMPORAIRE
-                            std::auto_ptr<math::Error<2>::type> covPtr(new math::Error<2>::type());
-                            (*covPtr)(0,0) = cov(0,0);
-                            (*covPtr)(1,0) = cov(1,0);
-                            (*covPtr)(1,1) = cov(1,1);
-                            std::cout << "(*covPtr)(0,0) = " << (*covPtr)(0,0) << std::endl;
-                            std::cout << "(*covPtr)(1,0) = " << (*covPtr)(1,0) << std::endl;
-                            std::cout << "(*covPtr)(1,1) = " << (*covPtr)(1,1) << std::endl;
-                            double det1 = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0);
-                            std::cout << "(*covPtr)(0,0) = " << ((*covPtr)(1,1) / det1 ) << std::endl;
-                            std::cout << "(*covPtr)(1,0) = " << -((*covPtr)(0,1) / det1 ) << std::endl;
-                            std::cout << "(*covPtr)(1,1) = " << ((*covPtr)(0,0) / det1 ) << std::endl;
-                            //std::cout << "significance = " << srcMET.significance() << std::endl;
-                            nplet.recoMETCov[0] = (*covPtr)(0,0);
-                            nplet.recoMETCov[1] = (*covPtr)(1,0);
-                            nplet.recoMETCov[2] = nplet.recoMETCov[1]; // (1,0) is the only one saved
-                            nplet.recoMETCov[3] = (*covPtr)(1,1);
-                            nplet.covarMET_display(); // to be removed 
-                    
-                            // Set MET covariance Matrix component (index order 00, 01, 10, 00 )
-                            double det = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0); // cf EventReader_impl_PyRun2.cpp L218-...
-                            
-                            nplet.recoMETCov[0] =  ((*covPtr)(1,1) / det );
-                            nplet.recoMETCov[1] = -((*covPtr)(0,1) / det );
-                            nplet.recoMETCov[2] = -((*covPtr)(1,0) / det );
-                            nplet.recoMETCov[3] =  ((*covPtr)(0,0) / det ); 
-                            
-                            nplet.fill_recoMET_4P(srcMET.et(), srcMET.phi());
-                            std::cout << "recoMET_4P loop (" << nplet.recoMET_4P.Pt() << ", " << nplet.recoMET_4P.Eta() << ", " << nplet.recoMET_4P.Phi() << ", " << nplet.recoMET_4P.M() << ") " << std::endl;*/
-                        
                             MetCovMatrix( nplet, mets );
                         
                             // Appel MEM 
@@ -594,45 +555,6 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             std::cout << "tau decayMode    : " << nplet.decayMode << std::endl;
                         
                             /* Mets */
-                            /*if ( mets->size() > 1 ) {
-                            std::cout << "!!!!! WARNING Met size : " << mets->size() << std::endl;
-                            }
-                            else {
-                                std::cout << "Met size : " << mets->size() << std::endl ;
-                            }
-                    
-                            std::cout << "nouveau" << std::endl;
-                            const pat::MET& srcMET = (*mets)[0];
-                            const reco::METCovMatrix cov = srcMET.getSignificanceMatrix(); // TEMPORAIRE
-                            std::auto_ptr<math::Error<2>::type> covPtr(new math::Error<2>::type());
-                            (*covPtr)(0,0) = cov(0,0);
-                            (*covPtr)(1,0) = cov(1,0);
-                            (*covPtr)(1,1) = cov(1,1);
-                            std::cout << "(*covPtr)(0,0) = " << (*covPtr)(0,0) << std::endl;
-                            std::cout << "(*covPtr)(1,0) = " << (*covPtr)(1,0) << std::endl;
-                            std::cout << "(*covPtr)(1,1) = " << (*covPtr)(1,1) << std::endl;
-                            double det1 = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0);
-                            std::cout << "(*covPtr)(0,0) = " << ((*covPtr)(1,1) / det1 ) << std::endl;
-                            std::cout << "(*covPtr)(1,0) = " << -((*covPtr)(0,1) / det1 ) << std::endl;
-                            std::cout << "(*covPtr)(1,1) = " << ((*covPtr)(0,0) / det1 ) << std::endl;
-                            //std::cout << "significance = " << srcMET.significance() << std::endl;
-                            nplet.recoMETCov[0] = (*covPtr)(0,0);
-                            nplet.recoMETCov[1] = (*covPtr)(1,0);
-                            nplet.recoMETCov[2] = nplet.recoMETCov[1]; // (1,0) is the only one saved
-                            nplet.recoMETCov[3] = (*covPtr)(1,1);
-                            nplet.covarMET_display(); // to be removed 
-                    
-                            // Set MET covariance Matrix component (index order 00, 01, 10, 00 )
-                            double det = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0); // cf EventReader_impl_PyRun2.cpp L218-...
-                                //
-                            nplet.recoMETCov[0] =  ((*covPtr)(1,1) / det );
-                            nplet.recoMETCov[1] = -((*covPtr)(0,1) / det );
-                            nplet.recoMETCov[2] = -((*covPtr)(1,0) / det );
-                            nplet.recoMETCov[3] =  ((*covPtr)(0,0) / det ); 
-                            
-                            nplet.fill_recoMET_4P(srcMET.et(), srcMET.phi());
-                            std::cout << "recoMET_4P loop (" << nplet.recoMET_4P.Pt() << ", " << nplet.recoMET_4P.Eta() << ", " << nplet.recoMET_4P.Phi() << ", " << nplet.recoMET_4P.M() << ") " << std::endl;*/
-                        
                             MetCovMatrix( nplet, mets );
                         
                             // Appel MEM 
@@ -687,47 +609,7 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             std::cout << "lep2 type        : " << nplet.lep2_type << std::endl;
                             std::cout << "tau decayMode    : " << nplet.decayMode << std::endl;
                         
-                            /* Mets */
-                            /*if ( mets->size() > 1 ) {
-                                std::cout << "!!!!! WARNING Met size : " << mets->size() << std::endl;
-                            }
-                            else {
-                                std::cout << "Met size : " << mets->size() << std::endl ;
-                            }
-                                
-                            std::cout << "nouveau" << std::endl;
-                            const pat::MET& srcMET = (*mets)[0];
-                            const reco::METCovMatrix cov = srcMET.getSignificanceMatrix(); // TEMPORAIRE
-                            std::auto_ptr<math::Error<2>::type> covPtr(new math::Error<2>::type());
-                            (*covPtr)(0,0) = cov(0,0);
-                            (*covPtr)(1,0) = cov(1,0);
-                            (*covPtr)(1,1) = cov(1,1);
-                            std::cout << "(*covPtr)(0,0) = " << (*covPtr)(0,0) << std::endl;
-                            std::cout << "(*covPtr)(1,0) = " << (*covPtr)(1,0) << std::endl;
-                            std::cout << "(*covPtr)(1,1) = " << (*covPtr)(1,1) << std::endl;
-                            double det1 = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0);
-                            std::cout << "(*covPtr)(0,0) = " << ((*covPtr)(1,1) / det1 ) << std::endl;
-                            std::cout << "(*covPtr)(1,0) = " << -((*covPtr)(0,1) / det1 ) << std::endl;
-                            std::cout << "(*covPtr)(1,1) = " << ((*covPtr)(0,0) / det1 ) << std::endl;
-                            //std::cout << "significance = " << srcMET.significance() << std::endl;
-                            nplet.recoMETCov[0] = (*covPtr)(0,0);
-                            nplet.recoMETCov[1] = (*covPtr)(1,0);
-                            nplet.recoMETCov[2] = nplet.recoMETCov[1]; // (1,0) is the only one saved
-                            nplet.recoMETCov[3] = (*covPtr)(1,1);
-                            nplet.covarMET_display(); // to be removed 
-                    
-                            // Set MET covariance Matrix component (index order 00, 01, 10, 00 )
-                            double det = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0); // cf EventReader_impl_PyRun2.cpp L218-...
-                            //std::cout << "det = " << det << std::endl;
-                                //
-                            nplet.recoMETCov[0] =  ((*covPtr)(1,1) / det );
-                            nplet.recoMETCov[1] = -((*covPtr)(0,1) / det );
-                            nplet.recoMETCov[2] = -((*covPtr)(1,0) / det );
-                            nplet.recoMETCov[3] =  ((*covPtr)(0,0) / det ); 
-                            
-                            nplet.fill_recoMET_4P(srcMET.et(), srcMET.phi());
-                            std::cout << "recoMET_4P loop (" << nplet.recoMET_4P.Pt() << ", " << nplet.recoMET_4P.Eta() << ", " << nplet.recoMET_4P.Phi() << ", " << nplet.recoMET_4P.M() << ") " << std::endl;*/
-                        
+                            /* Mets */                       
                             MetCovMatrix( nplet, mets );
                         
                             // Appel MEM 
