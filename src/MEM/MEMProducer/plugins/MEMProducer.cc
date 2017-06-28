@@ -507,7 +507,7 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             std::cout << "tau decayMode    : " << nplet.decayMode << std::endl;
                         
                             /* Mets */
-                            if ( mets->size() > 1 ) {
+                            /*if ( mets->size() > 1 ) {
                                 std::cout << "!!!!! WARNING Met size : " << mets->size() << std::endl;
                             }
                             else {
@@ -533,7 +533,7 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             nplet.recoMETCov[1] = (*covPtr)(1,0);
                             nplet.recoMETCov[2] = nplet.recoMETCov[1]; // (1,0) is the only one saved
                             nplet.recoMETCov[3] = (*covPtr)(1,1);
-                            nplet.covarMET_display(); // to be removed /**/
+                            nplet.covarMET_display(); // to be removed 
                     
                             // Set MET covariance Matrix component (index order 00, 01, 10, 00 )
                             double det = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0); // cf EventReader_impl_PyRun2.cpp L218-...
@@ -541,10 +541,12 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             nplet.recoMETCov[0] =  ((*covPtr)(1,1) / det );
                             nplet.recoMETCov[1] = -((*covPtr)(0,1) / det );
                             nplet.recoMETCov[2] = -((*covPtr)(1,0) / det );
-                            nplet.recoMETCov[3] =  ((*covPtr)(0,0) / det ); /**/
+                            nplet.recoMETCov[3] =  ((*covPtr)(0,0) / det ); 
                             
                             nplet.fill_recoMET_4P(srcMET.et(), srcMET.phi());
-                            std::cout << "recoMET_4P loop (" << nplet.recoMET_4P.Pt() << ", " << nplet.recoMET_4P.Eta() << ", " << nplet.recoMET_4P.Phi() << ", " << nplet.recoMET_4P.M() << ") " << std::endl;
+                            std::cout << "recoMET_4P loop (" << nplet.recoMET_4P.Pt() << ", " << nplet.recoMET_4P.Eta() << ", " << nplet.recoMET_4P.Phi() << ", " << nplet.recoMET_4P.M() << ") " << std::endl;*/
+                        
+                            MetCovMatrix( nplet, mets );
                         
                             // Appel MEM 
                             oneMPIProcess(nplet); // EventReader<Run1EventData_t> &eventReader, IntegralsOutputs<T> *integralsOutput
@@ -592,12 +594,12 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             std::cout << "tau decayMode    : " << nplet.decayMode << std::endl;
                         
                             /* Mets */
-                            if ( mets->size() > 1 ) {
+                            /*if ( mets->size() > 1 ) {
                             std::cout << "!!!!! WARNING Met size : " << mets->size() << std::endl;
                             }
                             else {
                                 std::cout << "Met size : " << mets->size() << std::endl ;
-                            }/**/
+                            }
                     
                             std::cout << "nouveau" << std::endl;
                             const pat::MET& srcMET = (*mets)[0];
@@ -618,7 +620,7 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             nplet.recoMETCov[1] = (*covPtr)(1,0);
                             nplet.recoMETCov[2] = nplet.recoMETCov[1]; // (1,0) is the only one saved
                             nplet.recoMETCov[3] = (*covPtr)(1,1);
-                            nplet.covarMET_display(); // to be removed /**/
+                            nplet.covarMET_display(); // to be removed 
                     
                             // Set MET covariance Matrix component (index order 00, 01, 10, 00 )
                             double det = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0); // cf EventReader_impl_PyRun2.cpp L218-...
@@ -626,10 +628,12 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             nplet.recoMETCov[0] =  ((*covPtr)(1,1) / det );
                             nplet.recoMETCov[1] = -((*covPtr)(0,1) / det );
                             nplet.recoMETCov[2] = -((*covPtr)(1,0) / det );
-                            nplet.recoMETCov[3] =  ((*covPtr)(0,0) / det ); /**/
+                            nplet.recoMETCov[3] =  ((*covPtr)(0,0) / det ); 
                             
                             nplet.fill_recoMET_4P(srcMET.et(), srcMET.phi());
-                            std::cout << "recoMET_4P loop (" << nplet.recoMET_4P.Pt() << ", " << nplet.recoMET_4P.Eta() << ", " << nplet.recoMET_4P.Phi() << ", " << nplet.recoMET_4P.M() << ") " << std::endl;
+                            std::cout << "recoMET_4P loop (" << nplet.recoMET_4P.Pt() << ", " << nplet.recoMET_4P.Eta() << ", " << nplet.recoMET_4P.Phi() << ", " << nplet.recoMET_4P.M() << ") " << std::endl;*/
+                        
+                            MetCovMatrix( nplet, mets );
                         
                             // Appel MEM 
                             oneMPIProcess(nplet); // EventReader<Run1EventData_t> &eventReader, IntegralsOutputs<T> *integralsOutput 
@@ -684,7 +688,7 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             std::cout << "tau decayMode    : " << nplet.decayMode << std::endl;
                         
                             /* Mets */
-                            if ( mets->size() > 1 ) {
+                            /*if ( mets->size() > 1 ) {
                                 std::cout << "!!!!! WARNING Met size : " << mets->size() << std::endl;
                             }
                             else {
@@ -710,7 +714,7 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             nplet.recoMETCov[1] = (*covPtr)(1,0);
                             nplet.recoMETCov[2] = nplet.recoMETCov[1]; // (1,0) is the only one saved
                             nplet.recoMETCov[3] = (*covPtr)(1,1);
-                            nplet.covarMET_display(); // to be removed /**/
+                            nplet.covarMET_display(); // to be removed 
                     
                             // Set MET covariance Matrix component (index order 00, 01, 10, 00 )
                             double det = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0); // cf EventReader_impl_PyRun2.cpp L218-...
@@ -719,10 +723,12 @@ MEMProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                             nplet.recoMETCov[0] =  ((*covPtr)(1,1) / det );
                             nplet.recoMETCov[1] = -((*covPtr)(0,1) / det );
                             nplet.recoMETCov[2] = -((*covPtr)(1,0) / det );
-                            nplet.recoMETCov[3] =  ((*covPtr)(0,0) / det ); /**/
+                            nplet.recoMETCov[3] =  ((*covPtr)(0,0) / det ); 
                             
                             nplet.fill_recoMET_4P(srcMET.et(), srcMET.phi());
-                            std::cout << "recoMET_4P loop (" << nplet.recoMET_4P.Pt() << ", " << nplet.recoMET_4P.Eta() << ", " << nplet.recoMET_4P.Phi() << ", " << nplet.recoMET_4P.M() << ") " << std::endl;
+                            std::cout << "recoMET_4P loop (" << nplet.recoMET_4P.Pt() << ", " << nplet.recoMET_4P.Eta() << ", " << nplet.recoMET_4P.Phi() << ", " << nplet.recoMET_4P.M() << ") " << std::endl;*/
+                        
+                            MetCovMatrix( nplet, mets );
                         
                             // Appel MEM 
                             oneMPIProcess( nplet ); // EventReader<Run1EventData_t> &eventReader, IntegralsOutputs<T> *integralsOutput

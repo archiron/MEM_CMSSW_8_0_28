@@ -257,6 +257,49 @@ class MEMProducer : public edm::stream::EDProducer<> {
             }
         }
       
+        void MetCovMatrix( MEM_nplet &nplet_template, edm::Handle<pat::METCollection> mets ) {
+        /* Mets */
+            if ( mets->size() > 1 ) {
+                std::cout << "MEMProducer.h : !!!!! WARNING Met size : " << mets->size() << std::endl;
+            }
+            else {
+                std::cout << "MEMProducer.h : Met size : " << mets->size() << std::endl ;
+            }
+
+            std::cout << "nouveau" << std::endl;
+            const pat::MET& srcMET = (*mets)[0];
+            const reco::METCovMatrix cov = srcMET.getSignificanceMatrix(); // TEMPORAIRE
+            std::auto_ptr<math::Error<2>::type> covPtr(new math::Error<2>::type());
+            (*covPtr)(0,0) = cov(0,0);
+            (*covPtr)(1,0) = cov(1,0);
+            (*covPtr)(1,1) = cov(1,1);
+            std::cout << "MEMProducer.h : (*covPtr)(0,0) = " << (*covPtr)(0,0) << std::endl;
+            std::cout << "MEMProducer.h : (*covPtr)(1,0) = " << (*covPtr)(1,0) << std::endl;
+            std::cout << "MEMProducer.h : (*covPtr)(1,1) = " << (*covPtr)(1,1) << std::endl;
+            double det1 = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0);
+            std::cout << "MEMProducer.h : (*covPtr)(0,0) = " << ((*covPtr)(1,1) / det1 ) << std::endl;
+            std::cout << "MEMProducer.h : (*covPtr)(1,0) = " << -((*covPtr)(0,1) / det1 ) << std::endl;
+            std::cout << "MEMProducer.h : (*covPtr)(1,1) = " << ((*covPtr)(0,0) / det1 ) << std::endl;
+            //std::cout << "MEMProducer.h : significance = " << srcMET.significance() << std::endl;
+            nplet_template.recoMETCov[0] = (*covPtr)(0,0);
+            nplet_template.recoMETCov[1] = (*covPtr)(1,0);
+            nplet_template.recoMETCov[2] = nplet_template.recoMETCov[1]; // (1,0) is the only one saved
+            nplet_template.recoMETCov[3] = (*covPtr)(1,1);
+            nplet_template.covarMET_display(); // to be removed /**/
+            
+            // Set MET covariance Matrix component (index order 00, 01, 10, 00 )
+            double det = (*covPtr)(0,0) * (*covPtr)(1,1) - (*covPtr)(1,0) * (*covPtr)(1,0); // cf EventReader_impl_PyRun2.cpp L218-...
+                            
+            nplet_template.recoMETCov[0] =  ((*covPtr)(1,1) / det );
+            nplet_template.recoMETCov[1] = -((*covPtr)(0,1) / det );
+            nplet_template.recoMETCov[2] = -((*covPtr)(1,0) / det );
+            nplet_template.recoMETCov[3] =  ((*covPtr)(0,0) / det ); /**/
+            
+            nplet_template.fill_recoMET_4P(srcMET.et(), srcMET.phi());
+            std::cout << "MEMProducer.h : recoMET_4P loop (" << nplet_template.recoMET_4P.Pt() << ", " << nplet_template.recoMET_4P.Eta() << ", " << nplet_template.recoMET_4P.Phi() << ", " << nplet_template.recoMET_4P.M() << ") " << std::endl;
+                        
+        }
+        
         // ----------member data ---------------------------
         
         edm::EDGetTokenT<pat::ElectronCollection> electronToken_; 
