@@ -57,8 +57,6 @@ void ExtractMETSignificance::produce(edm::Event& iEvent, const edm::EventSetup& 
 
     std::auto_ptr<double> significance (new double);
    (*significance) = sig;
-    cout << "significance=" << (*significance) << endl;
-    cout << "sig=" << sig << endl;
 
     std::cout << "nouvelle methode" << std::endl;
     std::auto_ptr<math::Error<2>::type> covPtr(new math::Error<2>::type());
@@ -73,15 +71,6 @@ void ExtractMETSignificance::produce(edm::Event& iEvent, const edm::EventSetup& 
     Handle<math::Error<2>::type> covHandle;
     iEvent.getByToken (theCovTag, covHandle);
     cout <<"covHandle ok" << endl;
-    //std::cout << "covHandle : " << covHandle << std::endl ;
-
-    /*recoMETCov[0] = (*covHandle)(0,0);
-    recoMETCov[1] = (*covHandle)(1,0);
-    recoMETCov[3] = (*covHandle)(1,1);
-    cout << "ok" << endl;
-    std::cout << "(*covHandle)(0,0) = " << recoMETCov[0] << std::endl;
-    std::cout << "(*covHandle)(1,0) = " << recoMETCov[1] << std::endl;
-    std::cout << "(*covHandle)(1,1) = " << recoMETCov[3] << std::endl;*/
 
     cout << "put significance" << endl;
     iEvent.put( significance, "METSignificance" );/**/
